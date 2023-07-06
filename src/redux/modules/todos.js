@@ -62,6 +62,12 @@ const todos = (state = initialState, action) => {
         todos: [...state.todos, action.payload],
       };
 
+    case DELETE_TODO:
+      return {
+        ...state, 
+        todos: state.todos.filter((todo) => todo.id !== action.payload)
+      }
+
     case TOGGLE_STATUS_TODO:
       return {
         ...state,
@@ -80,8 +86,8 @@ const todos = (state = initialState, action) => {
     case GET_TODO_BY_ID:
       return {
         ...state,
-        todo: state.todos.filter((todo) => {
-          return todo.id !== action.payload;
+        todo: state.todos.find((todo) => {
+          return todo.id === action.payload;
         }),
       };
     default:
