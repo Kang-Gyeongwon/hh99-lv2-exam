@@ -80,8 +80,8 @@ const todos = (state = initialState, action) => {
     case GET_TODO_BY_ID:
       return {
         ...state,
-        todo: state.todos.find((todo) => {
-          return todo.id === action.payload;
+        todo: state.todos.filter((todo) => {
+          return todo.id !== action.payload;
         }),
       };
     default:

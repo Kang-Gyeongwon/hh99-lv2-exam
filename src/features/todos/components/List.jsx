@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const List = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.todos);
-
+  console.log(todos)
   const onDeleteTodo = (id) => {
     dispatch(deleteTodo(id));
   };

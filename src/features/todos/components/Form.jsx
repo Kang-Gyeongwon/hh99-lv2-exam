@@ -23,7 +23,11 @@ const Form = () => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     if (todo.title.trim() === "" || todo.body.trim() === "") return;
-    dispatch(addTodo(todo))
+    const newTodo = {
+      ...todo,
+      id: id
+    }
+    dispatch(addTodo(newTodo))
     setTodo({
       id: 0,
       title: "",
