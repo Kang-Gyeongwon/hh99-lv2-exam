@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getTodoByID } from "../redux/modules/todos.js";
+import todos, { getTodoByID } from "../redux/modules/todos.js";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -10,25 +10,28 @@ const Detail = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
+  dispatch(getTodoByID(id));
 
   return (
     <StContainer>
       <StDialog>
-        <div>
-          <StDialogHeader>
-            <div>ID :{todo.id}</div>
-            <StButton
-              borderColor="#ddd"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              이전으로
-            </StButton>
-          </StDialogHeader>
-          <StTitle>{todo.title}</StTitle>
-          <StBody>{todo.body}</StBody>
-        </div>
+        {todo && (
+          <div>
+            <StDialogHeader>
+              <div>ID :{todo.id}</div>
+              <StButton
+                borderColor="#ddd"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                이전으로
+              </StButton>
+            </StDialogHeader>
+            <StTitle>{todo.title}</StTitle>
+            <StBody>{todo.body}</StBody>
+          </div>
+        )}
       </StDialog>
     </StContainer>
   );
